@@ -381,12 +381,12 @@
               <img src="assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
               <h2 id="empName"></h2>
               <h3 id="designation">Web Designer</h3>
-              <div class="social-links mt-2">
+              <!-- <div class="social-links mt-2">
                 <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
                 <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -474,9 +474,15 @@
                     </div>
 
                     <div class="row mb-3">
-                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">First Name</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="fullName" type="text" class="form-control" id="fullName" value="Kevin Anderson">
+                        <input name="fullName" type="text" class="form-control" id="firstName">
+                      </div>
+                    </div>
+                    <div class="row mb-3">
+                      <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Last Name</label>
+                      <div class="col-md-8 col-lg-9">
+                        <input name="fullName" type="text" class="form-control" id="lastName">
                       </div>
                     </div>
 
@@ -529,38 +535,6 @@
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
                         <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Twitter" class="col-md-4 col-lg-3 col-form-label">Twitter Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="twitter" type="text" class="form-control" id="Twitter"
-                          value="https://twitter.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Facebook" class="col-md-4 col-lg-3 col-form-label">Facebook Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="facebook" type="text" class="form-control" id="Facebook"
-                          value="https://facebook.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Instagram" class="col-md-4 col-lg-3 col-form-label">Instagram Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="instagram" type="text" class="form-control" id="Instagram"
-                          value="https://instagram.com/#">
-                      </div>
-                    </div>
-
-                    <div class="row mb-3">
-                      <label for="Linkedin" class="col-md-4 col-lg-3 col-form-label">Linkedin Profile</label>
-                      <div class="col-md-8 col-lg-9">
-                        <input name="linkedin" type="text" class="form-control" id="Linkedin"
-                          value="https://linkedin.com/#">
                       </div>
                     </div>
 
@@ -622,9 +596,13 @@
     const empId = params.get('id'); // Retrieves the value of 'name'
 
     const empDetail = employees.find(f => f.id == empId)
-    console.log(empDetail.firstName)
+    console.log(empDetail)
     document.getElementById("empName").innerText = empDetail.firstName;
     document.getElementById("detailEmpName").innerText = empDetail.firstName;
+
+    // For Edit
+    document.getElementById("firstName").value = empDetail.firstName;
+    document.getElementById("lastName").value = empDetail.lastname;
 
 
   </script>

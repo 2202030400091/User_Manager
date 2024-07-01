@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Tables / General - NiceAdmin Bootstrap Template</title>
+  <title>user-list</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -44,7 +44,8 @@
         <span class="d-none d-lg-block">NiceAdmin</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
+    </div>
+    <!-- End Logo -->
 
     <div class="search-bar">
       <form class="search-form d-flex align-items-center" method="POST" action="#">
@@ -262,7 +263,8 @@
       </ul>
     </nav><!-- End Icons Navigation -->
 
-  </header><!-- End Header<!-- ======= Sideareabar ======= -->
+  </header><!-- End Header -->
+  <!-- ======= Sideareabar ======= -->
   <aside id="sidebar" class="sidebar">
 
     <ul class="sidebar-nav" id="sidebar-nav">
@@ -351,11 +353,11 @@
               <table class="table" id="employeeTable">
                 <thead>
                   <tr>
-                    <th scope="col">#</th>
+                    <th scope="col">Id</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Position</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">Start Date</th>
+                    <th scope="col">Gender</th>
+                    <!-- <th scope="col">Age</th> -->
+                    <!-- <th scope="col">Start Date</th> -->
                   </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -435,18 +437,18 @@
         row.appendChild(firstCell);
 
         // Other cells
-        console.log(employee)
-        const nameCell = document.createElement('td');
-        nameCell.textContent = employee.name;
-        row.appendChild(nameCell);
+        // console.log(employee)
+        // const nameCell = document.createElement('td');
+        // nameCell.textContent = employee.name;
+        // row.appendChild(nameCell);
 
         const positionCell = document.createElement('td');
-        positionCell.textContent = employee.firstName;
+        positionCell.textContent = employee.firstName + " " + employee.lastname;
         row.appendChild(positionCell);
 
-        const ageCell = document.createElement('td');
-        ageCell.textContent = employee.lastname;
-        row.appendChild(ageCell);
+        // const ageCell = document.createElement('td');
+        // ageCell.textContent = employee.lastname;
+        // row.appendChild(ageCell);
 
         const startDateCell = document.createElement('td');
         startDateCell.textContent = employee.gender;
