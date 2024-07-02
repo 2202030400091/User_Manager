@@ -356,8 +356,9 @@
                     <th scope="col">Id</th>
                     <th scope="col">Name</th>
                     <th scope="col">Gender</th>
-                    <!-- <th scope="col">Age</th> -->
-                    <!-- <th scope="col">Start Date</th> -->
+                    <th scope="col">Designation</th>
+                    <th scope="col">Contact No.</th>
+                    <th scope="col">Email</th>
                   </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -446,13 +447,21 @@
         positionCell.textContent = employee.firstName + " " + employee.lastname;
         row.appendChild(positionCell);
 
-        // const ageCell = document.createElement('td');
-        // ageCell.textContent = employee.lastname;
-        // row.appendChild(ageCell);
-
         const startDateCell = document.createElement('td');
         startDateCell.textContent = employee.gender;
         row.appendChild(startDateCell);
+
+        const designationCell = document.createElement('td');
+        designationCell.textContent = employee.designation;
+        row.appendChild(designationCell);
+
+        const cnCell = document.createElement('td');
+        cnCell.textContent = employee.contactNumber;
+        row.appendChild(cnCell);
+
+        const countryCell = document.createElement('td');
+        countryCell.textContent = employee.country;
+        row.appendChild(countryCell);
 
         // Append row to tbody
         tbody.appendChild(row);

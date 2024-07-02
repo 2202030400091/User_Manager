@@ -48,19 +48,19 @@
       let contactNumber = document.getElementById("number").value;
 
       let aboutus = document.getElementById("us").value;
+      let designation = document.getElementById("ddlDesignation").value;
 
+
+      // Local storage
       let user = localStorage.getItem("userList") ? JSON.parse(localStorage.getItem("userList")) : [];
       let id = 1;
       if (user.length) {
         id = user[user.length - 1].id + 1
       }
       // let userDetail = { firstName: firstName, lastname: lastname, gender: gender, country: country, email: email, contactNumber: contactNumber, aboutus: aboutus }
-      let userDetail = { "id": id, "firstName": firstName, "lastname": lastname, "gender": gender }
-
+      let userDetail = { "id": id, "firstName": firstName, "lastname": lastname, "gender": gender, "country": country, "emailId": email, "contactNumber": contactNumber, "aboutus": aboutus, "designation": designation }
 
       user.push(userDetail);
-
-      debugger
 
       localStorage.setItem("userList", JSON.stringify(user))
 
@@ -203,6 +203,20 @@
 
                   </div>
                 </fieldset>
+
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label">Designation</label>
+
+                  <div class="col-sm-10">
+                    <select class="form-select" aria-label="Default select example" id="ddlDesignation">
+                      <option selected>Select</option>
+                      <option value="Web Developer">Web Developer</option>
+                      <option value="Designer">Designer</option>
+                      <option value="Business Analyst">Business Analyst</option>
+                    </select>
+                  </div>
+                </div>
+
                 <div class="row mb-3">
                   <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
 
