@@ -145,6 +145,7 @@
                     <th scope="col">Designation</th>
                     <th scope="col">Contact No.</th>
                     <th scope="col">Email</th>
+                    <th scope="col">Delete</th>
                   </tr>
                 </thead>
                 <tbody id="tableBody">
@@ -206,13 +207,29 @@
     //   { name: 'Angus Grady', position: 'HR', age: 34, startDate: '2012-06-11', profileLink: 'users-profile.html' },
     //   { name: 'Raheem Lehner', position: 'Dynamic Division Officer', age: 47, startDate: '2011-04-19', profileLink: 'users-profile.html' }
     // ];
-    const employees = JSON.parse(localStorage.getItem("userList"));
+
+    function deleteRow(details) {
+      let employees = JSON.parse(localStorage.getItem("userList"));
+      const otherEmp = employees.filter(f => f.id !== details);
+      localStorage.setItem("userList", JSON.stringify(otherEmp))
+
+      const rowToDelete = document.getElementById(details);
+
+      if (rowToDelete) {
+        rowToDelete.remove();
+      }
+
+    }
+
     // Function to create and append rows to the table body
     function populateTable() {
+      let employees = JSON.parse(localStorage.getItem("userList"));
+
       const tbody = document.getElementById('tableBody');
 
       employees.forEach((employee, index) => {
         const row = document.createElement('tr');
+        row.setAttribute('id', employee.id);
 
         // First cell (either a link or just text)
         const firstCell = document.createElement('th');
@@ -249,6 +266,18 @@
         countryCell.textContent = employee.country;
         row.appendChild(countryCell);
 
+        const deleteCell = document.createElement('td');
+        let deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Delete';
+        deleteButton.setAttribute('class', 'btn btn-primary')
+
+        deleteButton.onclick = function () {
+          deleteRow(employee.id);
+        };
+
+        deleteCell.appendChild(deleteButton)
+        row.appendChild(deleteCell);
+
         // Append row to tbody
         tbody.appendChild(row);
       });
@@ -256,6 +285,7 @@
 
     // Call the function to populate the table
     populateTable();
+
   </script>
 
 </body>
