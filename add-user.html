@@ -30,7 +30,8 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
   <script>
-    function submitDetail() {
+    function submitDetail(e) {
+      e.preventDefault()
       // console.log(e)
       let firstName = document.getElementById("firstName").value;
       let lastname = document.getElementById("lastName").value;
@@ -63,7 +64,7 @@
       user.push(userDetail);
 
       localStorage.setItem("userList", JSON.stringify(user))
-
+      document.getElementById("myForm").reset();
     }
   </script>
 
@@ -172,7 +173,7 @@
               <h5 class="card-title"></h5>
 
               <!-- General Form Elements -->
-              <form onsubmit="submitDetail()">
+              <form id="myForm" onsubmit="submitDetail(event)">
                 <div class="row mb-3">
                   <label for="inputText" class="col-sm-2 col-form-label">First Name:</label>
                   <div class="col-sm-10">
@@ -209,7 +210,7 @@
 
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" id="ddlDesignation">
-                      <option selected>Select</option>
+                      <option value="" selected>Select</option>
                       <option value="Web Developer">Web Developer</option>
                       <option value="Designer">Designer</option>
                       <option value="Business Analyst">Business Analyst</option>
@@ -279,7 +280,7 @@
 
                   <div class="col-sm-10">
                     <select class="form-select" aria-label="Default select example" id="ddlCountry">
-                      <option selected>Select country</option>
+                      <option value="" selected>Select country</option>
                       <option value="India">India</option>
                       <option value="USA">U.S.A</option>
                       <option value="Canada">Canada</option>
