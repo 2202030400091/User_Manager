@@ -483,24 +483,33 @@
                     <div class="row mb-3">
                       <label for="about" class="col-md-4 col-lg-3 col-form-label">About</label>
                       <div class="col-md-8 col-lg-9">
-                        <textarea name="about" class="form-control" id="txtAbout"
-                          style="height: 100px">Sunt est soluta temporibus accusantium neque nam maiores cumque temporibus. Tempora libero non est unde veniam est qui dolor. Ut sunt iure rerum quae quisquam autem eveniet perspiciatis odit. Fuga sequi sed ea saepe at unde.</textarea>
+                        <textarea name="about" class="form-control" id="txtAbout" style="height: 100px"></textarea>
                       </div>
                     </div>
-
-
 
                     <div class="row mb-3">
                       <label for="Job" class="col-md-4 col-lg-3 col-form-label">Job</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="job" type="text" class="form-control" id="Job" value="Web Designer">
+                        <select class="form-select" aria-label="Default select example" id="ddlDesignation">
+                          <option value="" selected>Select</option>
+                          <option value="Web Developer">Web Developer</option>
+                          <option value="Designer">Designer</option>
+                          <option value="Business Analyst">Business Analyst</option>
+                        </select>
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Country" class="col-md-4 col-lg-3 col-form-label">Country</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="country" type="text" class="form-control" id="Country" value="USA">
+                        <div class="col-sm-10">
+                          <select class="form-select" aria-label="Default select example" id="ddlCountry">
+                            <option value="" selected>Select country</option>
+                            <option value="India">India</option>
+                            <option value="USA">U.S.A</option>
+                            <option value="Canada">Canada</option>
+                          </select>
+                        </div>
                       </div>
                     </div>
 
@@ -515,21 +524,24 @@
                     <div class="row mb-3">
                       <label for="Phone" class="col-md-4 col-lg-3 col-form-label">Phone</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071">
+                        <!-- <input name="phone" type="text" class="form-control" id="Phone" value="(436) 486-3538 x29071"> -->
+                        <input type="number" class="form-control" id="number">
                       </div>
                     </div>
 
                     <div class="row mb-3">
                       <label for="Email" class="col-md-4 col-lg-3 col-form-label">Email</label>
                       <div class="col-md-8 col-lg-9">
-                        <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com">
+                        <!-- <input name="email" type="email" class="form-control" id="Email" value="k.anderson@example.com"> -->
+                        <input type="email" class="form-control" id="email">
                       </div>
                     </div>
 
                     <div class="text-center">
                       <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
-                  </form><!-- End Profile Edit Form -->
+                  </form>
+                  <!-- End Profile Edit Form -->
 
                 </div>
 
@@ -562,39 +574,63 @@
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
   <script>
-    const employees = JSON.parse(localStorage.getItem("userList"));
     const url = new URL(window.location.href);
-
-    // Create a new URLSearchParams object based on the query string
     const params = new URLSearchParams(url.search);
+    const empId = params.get('id');
 
-    // Retrieve individual parameter values
-    const empId = params.get('id'); // Retrieves the value of 'name'
+    function loadData() {
+      let employees = JSON.parse(localStorage.getItem("userList"));
 
-    const empDetail = employees.find(f => f.id == empId)
-    console.log(empDetail)
-    document.getElementById("empName").innerText = empDetail.firstName + " " + empDetail.lastname;
-    document.getElementById("designation").innerText = empDetail.designation;
-    document.getElementById("fullName").innerText = empDetail.firstName + " " + empDetail.lastname;
-    document.getElementById("jobDesignation").innerText = empDetail.designation;
-    document.getElementById("dvCountry").innerText = empDetail.country;
-    document.getElementById("dvPhone").innerText = empDetail.contactNumber;
-    document.getElementById("dvEmail").innerText = empDetail.emailId;
-    document.getElementById("dvAbout").innerText = empDetail.aboutus;
+      let empDetail = employees.find(f => f.id == empId)
+      document.getElementById("empName").innerText = empDetail.firstName + " " + empDetail.lastname;
+      document.getElementById("designation").innerText = empDetail.designation;
+      document.getElementById("fullName").innerText = empDetail.firstName + " " + empDetail.lastname;
+      document.getElementById("jobDesignation").innerText = empDetail.designation;
+      document.getElementById("dvCountry").innerText = empDetail.country;
+      document.getElementById("dvPhone").innerText = empDetail.contactNumber;
+      document.getElementById("dvEmail").innerText = empDetail.emailId;
+      document.getElementById("dvAbout").innerText = empDetail.aboutus;
 
+      // For Edit
+      document.getElementById("firstName").value = empDetail.firstName;
+      document.getElementById("lastName").value = empDetail.lastname;
+      document.getElementById("txtAbout").value = empDetail.aboutus;
+      document.getElementById("ddlCountry").value = empDetail.country;
+      document.getElementById("email").value = empDetail.emailId;
+      document.getElementById("number").value = empDetail.contactNumber;
+      document.getElementById("txtAbout").value = empDetail.aboutus;
+      document.getElementById("ddlDesignation").value = empDetail.designation;
+    }
 
-    // For Edit
-    document.getElementById("firstName").value = empDetail.firstName;
-    document.getElementById("lastName").value = empDetail.lastname;
-    // document.getElementById("lastName").value = empDetail.lastname;
-    document.getElementById("txtAbout").value = empDetail.aboutus;
-
+    loadData();
 
 
     function submitDetail(e) {
-      e.preventDefault()
-      let firstName = document.getElementById("firstName").value
-      console.log(firstName);
+      e.preventDefault();
+      let employees = JSON.parse(localStorage.getItem("userList"));
+      let firstName = document.getElementById("firstName").value;
+      let lastName = document.getElementById("lastName").value
+
+      let country = document.getElementById("ddlCountry").value;
+      let email = document.getElementById("email").value;
+      let contactNumber = document.getElementById("number").value;
+      let aboutus = document.getElementById("txtAbout").value;
+      let designation = document.getElementById("ddlDesignation").value;
+
+
+      let idx = employees.findIndex(profile => profile.id == empId);
+
+      employees[idx].firstName = firstName;
+      employees[idx].lastname = lastName;
+      employees[idx].aboutus = aboutus;
+      employees[idx].designation = designation;
+      employees[idx].country = country;
+      employees[idx].contactNumber = contactNumber;
+      employees[idx].emailId = email;
+      console.log(employees[idx])
+
+      localStorage.setItem("userList", JSON.stringify(employees))
+      loadData();
     }
 
   </script>
